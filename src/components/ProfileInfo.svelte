@@ -1,10 +1,26 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
+
     import profilePictureRound from '$lib/assets/images/profile_picture_round.png';
+
+    export let currentHeight: number;
+
+    let profileInfoContainer: HTMLDivElement;
+
+    // update height on mount and resize
+    onMount(() => {
+        currentHeight = profileInfoContainer.clientHeight;
+        window.addEventListener('resize', () => {
+            currentHeight = profileInfoContainer.clientHeight;
+        });
+    });
 </script>
 
-<div class="w-full p-8 shadow-even rounded-2xl">
+<div bind:this={profileInfoContainer} class="max-w-[940px] mx-auto p-8 shadow-even rounded-2xl">
     <img class="mx-auto" src="{profilePictureRound}" alt="Profile Picture" width="200"/>
-    <div class="text-center text-2xl font-bold mt-8">Hi, I'm David 👋</div>
+    <div class="text-center text-2xl font-bold mt-8 text-cyan-500">
+        Hi, I'm David 👋
+    </div>
     <div class="mt-4">
         I recently completed my Master's degree in Media Informatics, a multidisciplinary field combining computer science, design, and user interaction. My passion lies in developing innovative software and hardware prototypes. I have experience in web development (front- and backend), mobile development (Android and Flutter), developing desktop applications, hardware prototyping, and some design skills.
         <br><br>

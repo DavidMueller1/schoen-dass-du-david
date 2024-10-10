@@ -36,6 +36,9 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.1",
+		"@types/d3": "^7.4.3",
+		"d3": "^7.9.0",
+		"d3-hsv": "^0.1.0",
 		"svelte-headlessui": "^0.0.32",
 		"three": "^0.169.0"
 	}
