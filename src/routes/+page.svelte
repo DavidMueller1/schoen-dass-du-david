@@ -1,4 +1,5 @@
 <script lang="ts">
+    import * as d3 from 'd3';
     import { onMount } from "svelte";
     import ProfileInfo from "../components/ProfileInfo.svelte";
     import ProjectsComponent from "../components/ProjectsComponent.svelte";
@@ -16,8 +17,15 @@
     let containerBinding: HTMLDivElement;
 	let viewBoxBinding: SVGSVGElement;
 
+    let projectRowHeights: number[] = [];
+
     const recalculateTimelineLength = () => {
-        timelineLength = containerHeight - profileInfoHeight - 96 * 2;
+
+        // Get the height of all project-row-container elements in an array
+        const projectRowContainers = document.querySelectorAll('.project-row-container');
+        projectRowHeights = Array.from(projectRowContainers).map((container) => container.clientHeight);
+
+        timelineLength = projectRowHeights.reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[projectRowHeights.length - 1] / 2;
     };
 
     onMount(() => {
@@ -29,6 +37,7 @@
             containerHeight = containerBinding.clientHeight;
             recalculateTimelineLength();
         });
+
     });
 </script>
 
@@ -41,9 +50,20 @@
                         y={profileInfoHeight}
                         width={timelineWidth}
                         height={timelineLength}
-                        fill="rgb(6 182 212"
+                        fill="rgb(6 182 212)"
                 />
 			</g>
+            <g>
+                {#each projectRowHeights as height, index}
+                    <circle
+                        cx={containerWidth / 2}
+                        cy={profileInfoHeight + height / 2 + 96 + projectRowHeights.slice(0, index).reduce((acc, curr) => acc + curr + 96, 0)}
+                        r={timelineWidth * 2}
+                        fill="rgb(6 182 212)"
+                    />
+                {/each}
+            </g>
+<!--                        cy={profileInfoHeight + height / 2 + projectRowHeights.slice(0, index).reduce((acc, curr) => acc + curr, 0)}-->
 <!--			<g bind:this={xAxisGridBinding} transform="translate(0,{height})" />-->
 <!--			<g bind:this={yAxisBinding} class="text-lg" transform="translate({marginLeft},0)" />-->
 <!--			<g fill="none">-->

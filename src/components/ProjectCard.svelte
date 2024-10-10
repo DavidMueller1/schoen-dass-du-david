@@ -10,10 +10,10 @@
     let projectCardContainer: HTMLDivElement;
 
     onMount(() => {
-        currentHeight = projectCardContainer.clientHeight;
-        window.addEventListener('resize', () => {
-            currentHeight = projectCardContainer.clientHeight;
-        });
+        // currentHeight = projectCardContainer.clientHeight;
+        // window.addEventListener('resize', () => {
+        //     currentHeight = projectCardContainer.clientHeight;
+        // });
     });
 </script>
 
@@ -22,6 +22,6 @@
     <div class="p-8">
         <div class="text-xl font-bold">{projectTitle}</div>
         <slot />
-        <div class="mt-4">{projectDescription}</div>
+        <div class="mt-4">{@html projectDescription}</div>
     </div>
 </div>
