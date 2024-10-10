@@ -13,7 +13,7 @@
     let timelineLength = 0;
     let timelineScrollLength = 0;
 
-    $: profileInfoHeight && console.log(profileInfoHeight);
+    // $: profileInfoHeight && console.log(profileInfoHeight);
 
     // Bindings
     let containerBinding: HTMLDivElement;
@@ -40,9 +40,7 @@
             const topCutoff = profileInfoHeight + headerHeight + 96;
             const aimPosition = scrollY + viewportHeight - lowerPadding;
 
-            if (aimPosition < topCutoff) {
-                scrollProgress = 0;
-            } else {
+            if (aimPosition >= topCutoff) {
                 let projectIndex = 0;
                 projectRowHeights.forEach((height, index) => {
                     if (aimPosition > topCutoff + projectRowHeights.slice(0, index + 1).reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[index] / 2) {
@@ -52,15 +50,12 @@
 
                 if (projectIndex !== currentProjectIndex) {
                     currentProjectIndex = projectIndex;
-                    console.log(currentProjectIndex);
 
                     if (currentProjectIndex === 0) {
                         timelineScrollLength = 0;
                     } else {
                         timelineScrollLength = projectRowHeights.slice(0, currentProjectIndex).reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[currentProjectIndex - 1] / 2;
                     }
-
-                    console.log(timelineScrollLength);
 
                     // Animates the timeline to the new position
                     d3.select(timelineBinding)
