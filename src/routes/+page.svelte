@@ -5,17 +5,20 @@
     import ProjectsComponent from "../components/ProjectsComponent.svelte";
 
     const timelineWidth = 8;
+    const headerHeight = 64;
 
     let profileInfoHeight = 0;
     let containerWidth = 0;
     let containerHeight = 0;
     let timelineLength = 0;
+    let timelineScrollLength = 0;
 
     $: profileInfoHeight && console.log(profileInfoHeight);
 
     // Bindings
     let containerBinding: HTMLDivElement;
 	let viewBoxBinding: SVGSVGElement;
+    let timelineBinding: SVGRectElement;
 
     let projectRowHeights: number[] = [];
 
@@ -28,16 +31,59 @@
         timelineLength = projectRowHeights.reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[projectRowHeights.length - 1] / 2;
     };
 
+    let currentProjectIndex = 0;
+
+    const recalculateScrollPosition = () => {
+        const lowerPadding = 110;
+            const scrollY = window.scrollY;
+            const viewportHeight = window.innerHeight;  // Get viewport height
+            const topCutoff = profileInfoHeight + headerHeight + 96;
+            const aimPosition = scrollY + viewportHeight - lowerPadding;
+
+            if (aimPosition < topCutoff) {
+                scrollProgress = 0;
+            } else {
+                let projectIndex = 0;
+                projectRowHeights.forEach((height, index) => {
+                    if (aimPosition > topCutoff + projectRowHeights.slice(0, index + 1).reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[index] / 2) {
+                        projectIndex = index + 1;
+                    }
+                });
+
+                if (projectIndex !== currentProjectIndex) {
+                    currentProjectIndex = projectIndex;
+                    console.log(currentProjectIndex);
+
+                    if (currentProjectIndex === 0) {
+                        timelineScrollLength = 0;
+                    } else {
+                        timelineScrollLength = projectRowHeights.slice(0, currentProjectIndex).reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[currentProjectIndex - 1] / 2;
+                    }
+
+                    console.log(timelineScrollLength);
+
+                    // Animates the timeline to the new position
+                    d3.select(timelineBinding)
+                        .transition()
+                        .duration(1000)
+                        .attr('height', timelineScrollLength);
+                }
+            }
+    }
+
     onMount(() => {
         containerWidth = containerBinding.clientWidth;
         containerHeight = containerBinding.clientHeight;
         recalculateTimelineLength();
+        recalculateScrollPosition();
         window.addEventListener("resize", () => {
             containerWidth = containerBinding.clientWidth;
             containerHeight = containerBinding.clientHeight;
             recalculateTimelineLength();
         });
 
+        // Listen to scroll events
+        window.addEventListener("scroll", recalculateScrollPosition);
     });
 </script>
 
@@ -46,10 +92,10 @@
         <svg bind:this={viewBoxBinding} height={containerHeight - 96 * 2} class="w-full">
 			<g>
 				<rect
+                        bind:this={timelineBinding}
                         x={containerWidth / 2 - timelineWidth / 2}
                         y={profileInfoHeight}
                         width={timelineWidth}
-                        height={timelineLength}
                         fill="rgb(6 182 212)"
                 />
 			</g>
@@ -63,27 +109,6 @@
                     />
                 {/each}
             </g>
-<!--                        cy={profileInfoHeight + height / 2 + projectRowHeights.slice(0, index).reduce((acc, curr) => acc + curr, 0)}-->
-<!--			<g bind:this={xAxisGridBinding} transform="translate(0,{height})" />-->
-<!--			<g bind:this={yAxisBinding} class="text-lg" transform="translate({marginLeft},0)" />-->
-<!--			<g fill="none">-->
-<!--				{#each data as entry, index}-->
-<!--					{#if entry.connectionStatus === ConnectionStatus.CONNECTED}-->
-<!--&lt;!&ndash;						<clipPath id="clip">&ndash;&gt;-->
-<!--&lt;!&ndash;							<rect x={marginLeft} y={0} width={width - marginLeft - marginRight} height={height} />&ndash;&gt;-->
-<!--&lt;!&ndash;						</clipPath>&ndash;&gt;-->
-<!--						<rect-->
-<!--							x={x(entry.timestampStart)}-->
-<!--							y={marginTop}-->
-<!--							width={x(entry.timestampEnd) - x(entry.timestampStart)}-->
-<!--							height={height - marginBottom - marginTop}-->
-<!--							fill={attributeMapping.find(mapping => mapping.attributeValue === entry.attributeVal)?.color}-->
-<!--							use:popup={popupDetailList[index]}-->
-<!--						/>-->
-<!--&lt;!&ndash;						<use href="#chart-rect-{index}" clip-path="url(#clip)" stroke="#3c8eae" stroke-width="4" />&ndash;&gt;-->
-<!--					{/if}-->
-<!--				{/each}-->
-<!--			</g>-->
         </svg>
     </div>
     <div class="relative">
