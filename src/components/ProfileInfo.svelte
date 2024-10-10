@@ -2,6 +2,8 @@
     import { onMount } from 'svelte';
 
     import profilePictureRound from '$lib/assets/images/profile_picture_round.png';
+    import github from '$lib/assets/images/github.png';
+    import linkedin from '$lib/assets/images/linkedin.png';
 
     export let currentHeight: number;
 
@@ -27,9 +29,13 @@
         This website is a showcase of my recent projects and experiments. Feel free to explore and get in touch if you have any questions or feedback.
     </div>
 <!--    LinkedIn icon with link-->
-    <div class="flex justify-end">
-        <a href="https://www.linkedin.com/in/david-schoen-1b1b3b1b1/" target="_blank">
-            <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn" class="w-8 h-8"/>
+    <div class="flex justify-end space-x-2">
+        <a href="https://www.linkedin.com/in/muellerda/" target="_blank">
+            <img src={linkedin} alt="LinkedIn" class="w-8 h-8"/>
+        </a>
+<!--        Github link-->
+        <a href="https://github.com/DavidMueller1" target="_blank">
+            <img src={github} alt="GitHub" class="w-8 h-8"/>
         </a>
     </div>
 </div>
