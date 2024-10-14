@@ -9,6 +9,7 @@
 
     export let isMobile: boolean;
     export let spacingMiddle = 80;
+    export let verticalSpacing: number;
     export let allImagesLoaded: () => void;
 
     let waiting = 2;
@@ -31,8 +32,9 @@
     <ProjectRow
         projectTitle="PrivacyHub"
         projectSubtitle="Master's Thesis"
-        image={privacyHubImage}
+        content={privacyHubImage}
         spacingMiddle={spacingMiddle}
+        verticalSpacing={verticalSpacing}
         invert={true}
         isMobile={isMobile}
         onLoad={onLoad}
@@ -47,13 +49,23 @@
         </div>
     </ProjectRow>
     <ProjectRow
-        projectTitle="PrivacyHub"
-        image={privacyHubImage}
+        projectTitle="ConnectivityControl"
+        projectSubtitle='Demo for "22nd International Conference on Mobile and Ubiquitous Multimedia" (MUM ’23)'
+        content='https://www.youtube.com/embed/ME-2od-9ksc?si=tn-479-lkOqXEamX'
+        isVideo={true}
         spacingMiddle={spacingMiddle}
+        verticalSpacing={verticalSpacing}
         invert={false}
         isMobile={isMobile}
         onLoad={onLoad}
     >
-        <div class="mt-4">This is a test project. It is used to test the ProjectCard component.<br>Test</div>
+        <div class="mt-4">
+            ConnectivityControl originally started as a 16-people-project for a practical web development course, after which four of us got the chance to enhance and demonstrate it at the 22nd International Conference on Mobile and Ubiquitous Multimedia (MUM ’23).
+            <br><br>
+            The framework allows the users to set the connectivity level (<span class="text-[#e05c49]">Offline</span>, <span class="text-[#f2a641]">Access Point</span>, <span class="text-[#74b9ff]">Local Network</span>, or <span class="text-[#70b853]">Online</span>) of two devices that were built during this project as a proof of concept. The system also includes a local and an online web interface to control the devices.
+            <br><br>
+<!--            This project was the direct inspiration for my master's thesis project, PrivacyHub.<br>-->
+            The publication can be found here: <a href="https://doi.org/10.1145/3626705.3631876" target="_blank">ConnectivityControl: A Model Ecosystem for Advanced Smart Home Privacy</a>
+        </div>
     </ProjectRow>
 </div>

@@ -7,6 +7,8 @@
     const timelineWidth = 8;
     const headerHeight = 64;
     const spacingMiddle = 80;
+    const verticalSpacing = 180;
+    const topSpacing = 96;
 
     let profileInfoHeight = 0;
     let containerWidth = 0;
@@ -56,9 +58,9 @@
 
 
         if (isMobile) {
-            timelineLength = projectRowHeights.slice(0, projectRowHeights.length - 1).reduce((acc, curr) => acc + curr + 96, 0) + projectImagesHeights[projectImagesHeights.length - 1] + 96 + spacingMiddle / 2;
+            timelineLength = projectRowHeights.slice(0, projectRowHeights.length - 1).reduce((acc, curr) => acc + curr + verticalSpacing, 0) + projectImagesHeights[projectImagesHeights.length - 1] + verticalSpacing + spacingMiddle / 2;
         } else {
-            timelineLength = projectRowHeights.reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[projectRowHeights.length - 1] / 2;
+            timelineLength = projectRowHeights.reduce((acc, curr) => acc + curr + verticalSpacing, 0) - projectRowHeights[projectRowHeights.length - 1] / 2;
         }
         console.log("Timeline length:")
         console.log(timelineLength);
@@ -68,13 +70,13 @@
         const lowerPadding = 190;
         const scrollY = window.scrollY;
         const viewportHeight = window.innerHeight;  // Get viewport height
-        const topCutoff = profileInfoHeight + headerHeight + 96;
+        const topCutoff = profileInfoHeight + headerHeight + topSpacing;
         const aimPosition = scrollY + viewportHeight - lowerPadding;
 
         if (aimPosition >= topCutoff) {
             let projectIndex = 0;
             projectRowHeights.forEach((height, index) => {
-                if (aimPosition > topCutoff + projectRowHeights.slice(0, index + 1).reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[index] / 2) {
+                if (aimPosition > topCutoff + projectRowHeights.slice(0, index + 1).reduce((acc, curr) => acc + curr + verticalSpacing, 0) - projectRowHeights[index] / 2) {
                     projectIndex = index + 1;
                 }
             });
@@ -87,9 +89,9 @@
                     timelineScrollLength = 0;
                 } else {
                     if (isMobile) {
-                        timelineScrollLength = projectRowHeights.slice(0, currentProjectIndex - 1).reduce((acc, curr) => acc + curr + 96, 0) + projectImagesHeights[currentProjectIndex - 1] + 96 + spacingMiddle / 2;
+                        timelineScrollLength = projectRowHeights.slice(0, currentProjectIndex - 1).reduce((acc, curr) => acc + curr + verticalSpacing, 0) + projectImagesHeights[currentProjectIndex - 1] + verticalSpacing + spacingMiddle / 2;
                     } else {
-                        timelineScrollLength = projectRowHeights.slice(0, currentProjectIndex).reduce((acc, curr) => acc + curr + 96, 0) - projectRowHeights[currentProjectIndex - 1] / 2;
+                        timelineScrollLength = projectRowHeights.slice(0, currentProjectIndex).reduce((acc, curr) => acc + curr + verticalSpacing, 0) - projectRowHeights[currentProjectIndex - 1] / 2;
                     }
                 }
 
@@ -148,8 +150,8 @@
             .attr('class', 'project-circle')
             .attr('cx', containerWidth / 2)
             .attr('cy', (_, i) => isMobile ?
-                profileInfoHeight + projectImagesHeights[i] + 96 + projectRowHeights.slice(0, i).reduce((acc, curr) => acc + curr + 96, 0) + spacingMiddle / 2 :
-                profileInfoHeight + projectRowHeights[i] / 2 + 96 + projectRowHeights.slice(0, i).reduce((acc, curr) => acc + curr + 96, 0)
+                profileInfoHeight + projectImagesHeights[i] + verticalSpacing + projectRowHeights.slice(0, i).reduce((acc, curr) => acc + curr + verticalSpacing, 0) + spacingMiddle / 2 :
+                profileInfoHeight + projectRowHeights[i] / 2 + verticalSpacing + projectRowHeights.slice(0, i).reduce((acc, curr) => acc + curr + verticalSpacing, 0)
             )
             .attr('r', timelineWidth)
             .attr('fill', 'rgb(238 238 238)');
@@ -201,8 +203,8 @@
 <!--                            class="project-circle"-->
 <!--                            cx={containerWidth / 2}-->
 <!--                            cy={isMobile ?-->
-<!--                                profileInfoHeight + projectImagesHeights[index] + 96 + projectRowHeights.slice(0, index).reduce((acc, curr) => acc + curr + 96, 0) + spacingMiddle / 2 :-->
-<!--                                profileInfoHeight + height / 2 + 96 + projectRowHeights.slice(0, index).reduce((acc, curr) => acc + curr + 96, 0)-->
+<!--                                profileInfoHeight + projectImagesHeights[index] + verticalSpacing + projectRowHeights.slice(0, index).reduce((acc, curr) => acc + curr + verticalSpacing, 0) + spacingMiddle / 2 :-->
+<!--                                profileInfoHeight + height / 2 + verticalSpacing + projectRowHeights.slice(0, index).reduce((acc, curr) => acc + curr + verticalSpacing, 0)-->
 <!--                            }-->
 <!--                            r={timelineWidth}-->
 <!--                            fill="rgb(238 238 238)"-->
@@ -216,6 +218,7 @@
         <ProjectsComponent
             isMobile={isMobile}
             spacingMiddle={spacingMiddle}
+            verticalSpacing={verticalSpacing}
             allImagesLoaded={() => updateGraphics()}
         />
     </div>

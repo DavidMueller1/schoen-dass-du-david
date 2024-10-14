@@ -6,8 +6,10 @@
 
     export let projectTitle: string;
     export let projectSubtitle = '';
-    export let image: string;
+    export let content: string;
+    export let isVideo = false;
     export let spacingMiddle: number;
+    export let verticalSpacing: number;
     export let invert = false;
     export let isMobile: boolean;
     export let onLoad: (event: Event) => void;
@@ -20,9 +22,10 @@
 </script>
 
 {#if isMobile}
-    <div class="project-row-container box-border flex flex-col w-full mt-24 px-8">
+    <div class="project-row-container box-border flex flex-col w-full px-8" style="margin-top: {verticalSpacing}px">
         <ProjectImage
-                image={image}
+                content={content}
+                isVideo={isVideo}
                 isMobile={isMobile}
                 onLoad={onLoad}
         />
@@ -36,10 +39,11 @@
         </ProjectCard>
     </div>
 {:else}
-    <div class="project-row-container box-border flex w-full mt-24 px-8">
+    <div class="project-row-container box-border flex w-full px-8" style="margin-top: {verticalSpacing}px">
         {#if invert}
             <ProjectImage
-                    image={image}
+                    content={content}
+                    isVideo={isVideo}
                     isMobile={isMobile}
                     invert={true}
                     onLoad={onLoad}
@@ -62,7 +66,8 @@
             </ProjectCard>
             <div class="middle-spacer" style="width: {spacingMiddle}px"></div>
             <ProjectImage
-                    image={image}
+                    content={content}
+                    isVideo={isVideo}
                     isMobile={isMobile}
                     invert={false}
                     onLoad={onLoad}
