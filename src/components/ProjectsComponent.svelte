@@ -5,7 +5,7 @@
     import ProjectRow from "./ProjectRow.svelte";
 
     import privacyHubImage from '$lib/assets/images/privacy_hub.png';
-    import ProjectImage from "./ProjectImage.svelte";
+    import unityVrImage from '$lib/assets/images/unity_vr.jpg';
 
     export let isMobile: boolean;
     export let spacingMiddle = 80;
@@ -111,6 +111,26 @@
             <br><br>
             This project was a gateway to the world of physical prototyping and electronics for me and marked the beginning of my passion for hardware development.
             It was also the first time I worked with a 3D printer, which motivated me to buy one myself and to start designing and printing my own projects.
+        </div>
+    </ProjectRow>
+    <!--  Unity VR  -->
+    <ProjectRow
+        projectTitle="VR Project in Unity"
+        projectSubtitle='Practical Course'
+        content={unityVrImage}
+        spacingMiddle={spacingMiddle}
+        verticalSpacing={verticalSpacing}
+        invert={true}
+        isMobile={isMobile}
+        onLoad={onLoad}
+    >
+        <div class="mt-4">
+            In this practical course, the focus was on developing a VR experience in Unity. In addition to that, we were tasked to integrate multiplayer and implement some controls via an EMG sensor, which measures muscle activity. The time frame for this project was one week.
+            <br><br>
+<!--            Portal-->
+            Our group of four students decided to create a VR puzzle game inspired by the popular game <a href="https://store.steampowered.com/app/400/Portal/" target="_blank">Portal</a>. Two players have to escape rooms by solving puzzles together. The catch is that the players move around by teleporting the other player, which makes communication and coordination key to success. The EMG sensor was used to control the teleportation.
+            <br><br>
+            During this project, I learned a lot about VR development, multiplayer synchronization, and how to integrate hardware into a Unity project.
         </div>
     </ProjectRow>
 </div>

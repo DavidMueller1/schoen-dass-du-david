@@ -112,15 +112,6 @@
         }
     }
 
-    // const onBinding = (element: HTMLElement) => {
-    //     console.log("Binding:");
-    //     console.log(element);
-    //     containerWidth = containerBinding.clientWidth;
-    //     containerHeight = containerBinding.clientHeight;
-    //     checkMobile();
-    //     recalculateTimelineLength();
-    // }
-
     const createD3Elements = () => {
         const viewBox = d3.select(viewBoxBinding);
         // Remove all existing elements

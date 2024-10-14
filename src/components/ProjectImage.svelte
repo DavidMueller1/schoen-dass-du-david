@@ -16,18 +16,18 @@
 
     const recalculateImageSize = () => {
         if (imageBinding) {
-            const imageWidth = imageBinding.width;
-            const imageHeight = imageBinding.height;
-
-            if (imageHeight > maxImageHeight) {
-                imageBinding.height = maxImageHeight;
-                imageBinding.width = (maxImageHeight / imageHeight) * imageWidth;
-            }
-
-            if (imageWidth > maxImageWidth) {
-                imageBinding.width = maxImageWidth;
-                imageBinding.height = (maxImageWidth / imageWidth) * imageHeight;
-            }
+            // const imageWidth = imageBinding.width;
+            // const imageHeight = imageBinding.height;
+            //
+            // if (imageHeight > maxImageHeight) {
+            //     imageBinding.height = maxImageHeight;
+            //     imageBinding.width = (maxImageHeight / imageHeight) * imageWidth;
+            // }
+            //
+            // if (imageWidth > maxImageWidth) {
+            //     imageBinding.width = maxImageWidth;
+            //     imageBinding.height = (maxImageWidth / imageWidth) * imageHeight;
+            // }
         }
         if (iframeBinding) {
             if (isVideo) {
@@ -69,7 +69,7 @@
         {#if isVideo}
             <iframe on:load={onLoad} bind:this={iframeBinding} class="absolute top-0 left-0 bottom-0 right-0 w-full h-full border-none rounded-lg" src={content} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         {:else}
-            <img on:load={onLoad} bind:this={imageBinding} src={content} alt="Project Image"/>
+            <img on:load={onLoad} bind:this={imageBinding} class="rounded-lg" src={content} alt="Project Image"/>
         {/if}
     </div>
 {:else}
@@ -78,7 +78,7 @@
             {#if isVideo}
                 <iframe on:load={onLoad} bind:this={iframeBinding} class="absolute top-0 left-0 bottom-0 right-0 w-full h-full border-none rounded-lg" src={content} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             {:else}
-                <img on:load={onLoad} bind:this={imageBinding} src={content} alt="Project Image"/>
+                <img on:load={onLoad} bind:this={imageBinding} class="rounded-lg" src={content} alt="Project Image"/>
             {/if}
         </div>
     </div>
