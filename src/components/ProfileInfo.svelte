@@ -19,7 +19,7 @@
     });
 </script>
 
-<div bind:this={profileInfoContainer} class="max-w-[1000px] mx-auto px-8">
+<div bind:this={profileInfoContainer} class="max-w-[1000px] mx-auto sm:px-8 px-4">
     <div class="p-8 shadow-even rounded-2xl">
         <img class="mx-auto" src="{profilePictureRound}" alt="Profile Picture" width="200"/>
         <div class="text-center text-2xl font-bold mt-8 text-cyan-500">

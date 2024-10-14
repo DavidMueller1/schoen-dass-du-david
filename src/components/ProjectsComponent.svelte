@@ -29,6 +29,7 @@
 </script>
 
 <div class="max-w-[1240px] mx-auto">
+    <!--  PrivacyHub  -->
     <ProjectRow
         projectTitle="PrivacyHub"
         projectSubtitle="Master's Thesis"
@@ -48,6 +49,7 @@
             For a detailed explanation and evaluation of the system, please refer to my master's thesis: <a href="https://drive.google.com/file/d/1qS-S8zFgc5B6aB6hSXEOV53u1T_wDUVO/view?usp=drive_link" target="_blank">Development and Evaluation of a Smart Home Privacy Hub</a>.
         </div>
     </ProjectRow>
+    <!--  ConnectivityControl  -->
     <ProjectRow
         projectTitle="ConnectivityControl"
         projectSubtitle='Demo for "22nd International Conference on Mobile and Ubiquitous Multimedia" (MUM ’23)'
@@ -66,6 +68,28 @@
             <br><br>
 <!--            This project was the direct inspiration for my master's thesis project, PrivacyHub.<br>-->
             The publication can be found here: <a href="https://doi.org/10.1145/3626705.3631876" target="_blank">ConnectivityControl: A Model Ecosystem for Advanced Smart Home Privacy</a>
+        </div>
+    </ProjectRow>
+    <!--  Unity ML  -->
+    <ProjectRow
+        projectTitle="Reinforcement Learning in Unity"
+        projectSubtitle="Practical Course"
+        content="https://www.youtube.com/embed/SEYbNer4YLo?si=EHeer1XBNMv36itG"
+        isVideo={true}
+        spacingMiddle={spacingMiddle}
+        verticalSpacing={verticalSpacing}
+        invert={true}
+        isMobile={isMobile}
+        onLoad={onLoad}
+    >
+        <div class="mt-4">
+            In this practical course about machine learning and its application in the game engine <a href="https://unity.com/" target="_blank">Unity</a>, the goal was to develop a small game and to train the AI players in one week.
+            <br><br>
+            Since the theme was environmental damage, our group of four students came up with a game where <span class="text-[#ee8e43]">whale catchers</span> try to catch as many whales as possible, while <span class="text-[#379cf0]">police boats</span> try to prevent them from doing so.
+            <br><br>
+            Our main goals were creating satisfying, physics-based controls for the boats and of course training the AI players to act as a challenging opponents. Said controls were used by the AI players as well, which made the training process quite interesting.
+            <br><br>
+            The result can be seen in the video.
         </div>
     </ProjectRow>
 </div>

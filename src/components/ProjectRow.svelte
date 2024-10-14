@@ -22,7 +22,7 @@
 </script>
 
 {#if isMobile}
-    <div class="project-row-container box-border flex flex-col w-full px-8" style="margin-top: {verticalSpacing}px">
+    <div class="project-row-container box-border flex flex-col w-full sm:px-8 px-4" style="margin-top: {verticalSpacing}px">
         <ProjectImage
                 content={content}
                 isVideo={isVideo}
@@ -39,7 +39,7 @@
         </ProjectCard>
     </div>
 {:else}
-    <div class="project-row-container box-border flex w-full px-8" style="margin-top: {verticalSpacing}px">
+    <div class="project-row-container box-border flex w-full sm:px-8 px-4" style="margin-top: {verticalSpacing}px">
         {#if invert}
             <ProjectImage
                     content={content}
