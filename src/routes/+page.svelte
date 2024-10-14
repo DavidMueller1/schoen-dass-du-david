@@ -67,11 +67,12 @@
     };
 
     const recalculateScrollPosition = () => {
-        const lowerPadding = 190;
+        const lowerPadding = 160;
         const scrollY = window.scrollY;
         const viewportHeight = window.innerHeight;  // Get viewport height
         const topCutoff = profileInfoHeight + headerHeight + topSpacing;
         const aimPosition = scrollY + viewportHeight - lowerPadding;
+        // const aimPosition = scrollY + viewportHeight / 2;
 
         if (aimPosition >= topCutoff) {
             let projectIndex = 0;

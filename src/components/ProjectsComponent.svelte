@@ -89,7 +89,28 @@
             <br><br>
             Our main goals were creating satisfying, physics-based controls for the boats and of course training the AI players to act as a challenging opponents. Said controls were used by the AI players as well, which made the training process quite interesting.
             <br><br>
-            The result can be seen in the video.
+            The results can be seen in the video.
+        </div>
+    </ProjectRow>
+    <!--  BBAlexa  -->
+    <ProjectRow
+        projectTitle="BBAlexa (Alexa on Wheels)"
+        projectSubtitle='Practical Course'
+        content='https://www.youtube.com/embed/0vEwpr4hfM0?si=dQn_GvortKeO8Gm0'
+        isVideo={true}
+        spacingMiddle={spacingMiddle}
+        verticalSpacing={verticalSpacing}
+        invert={false}
+        isMobile={isMobile}
+        onLoad={onLoad}
+    >
+        <div class="mt-4">
+            The goal of this practical course was to teach the basics of electronics, circuit design, microcontroller programming, and physical prototyping.
+            <br><br>
+            We applied the acquired knowledge to build a spherical, drivable robot with alexa integration, which we named BBAlexa.
+            <br><br>
+            This project was a gateway to the world of physical prototyping and electronics for me and marked the beginning of my passion for hardware development.
+            It was also the first time I worked with a 3D printer, which motivated me to buy one myself and to start designing and printing my own projects.
         </div>
     </ProjectRow>
 </div>
