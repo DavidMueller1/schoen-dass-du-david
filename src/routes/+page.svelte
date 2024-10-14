@@ -71,8 +71,8 @@
         const scrollY = window.scrollY;
         const viewportHeight = window.innerHeight;  // Get viewport height
         const topCutoff = profileInfoHeight + headerHeight + topSpacing;
-        const aimPosition = scrollY + viewportHeight - lowerPadding;
-        // const aimPosition = scrollY + viewportHeight / 2;
+        // const aimPosition = scrollY + viewportHeight - lowerPadding;
+        const aimPosition = scrollY + viewportHeight * 0.66;
 
         if (aimPosition >= topCutoff) {
             let projectIndex = 0;
