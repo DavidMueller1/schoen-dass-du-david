@@ -3,11 +3,9 @@
     import * as d3 from 'd3';
 
     export let projectTitle: string;
-    export let projectDescription: string;
-
-    export let currentHeight: number;
-
-    let projectCardContainer: HTMLDivElement;
+    export let projectSubtitle = '';
+    // export let projectDescription: string;
+    export let isMobile: boolean;
 
     onMount(() => {
         // currentHeight = projectCardContainer.clientHeight;
@@ -17,11 +15,27 @@
     });
 </script>
 
-<!--A test card-->
-<div bind:this={projectCardContainer} class="grow basis-0 min-w-0 box-border bg-white shadow-even rounded-lg overflow-hidden">
-    <div class="p-8">
-        <div class="text-xl font-bold">{projectTitle}</div>
-        <slot />
-        <div class="mt-4">{@html projectDescription}</div>
+{#if isMobile}
+<!--    <div class="grow basis-0 w-full box-border bg-white shadow-even rounded-lg overflow-hidden">-->
+    <div class="box-border bg-white shadow-even rounded-lg">
+        <div class="p-8">
+            <div class="text-xl font-bold">{projectTitle}</div>
+            {#if projectSubtitle}
+                <div class="text-lg font-semibold text-gray-500">{projectSubtitle}</div>
+            {/if}
+            <slot />
+<!--            <div class="mt-4">{@html projectDescription}</div>-->
+        </div>
     </div>
-</div>
+{:else}
+    <div class="grow basis-0 min-w-0 box-border bg-white shadow-even rounded-lg overflow-hidden">
+        <div class="p-8">
+            <div class="text-xl font-bold">{projectTitle}</div>
+            {#if projectSubtitle}
+                <div class="text-lg text-gray-500">{projectSubtitle}</div>
+            {/if}
+            <slot />
+<!--            <div class="mt-4">{@html projectDescription}</div>-->
+        </div>
+    </div>
+{/if}

@@ -6,6 +6,9 @@
     const maxImageWidth = 400;
 
     export let image: string;
+    export let isMobile: boolean;
+    export let invert = false;
+    export let onLoad: (event: Event) => void;
 
     let imageBinding: HTMLImageElement;
 
@@ -26,17 +29,35 @@
         }
     };
 
+
+
     onMount(() => {
         recalculateImageSize();
         window.addEventListener('resize', () => {
             recalculateImageSize();
         });
     });
+
+    // let waiting = 0
+    // const onload = (el: HTMLElement) => {
+    //     waiting++
+    //     el.addEventListener('load', () => {
+    //         waiting--
+    //         if (waiting === 0) {
+    //             console.log('all images loaded')
+    //         }
+    //     })
+    // }
 </script>
 
-<!--A test card-->
-<div class="grow basis-0 min-w-0 box-border overflow-hidden ">
-    <div class="p-8 flex flex-row justify-end">
-        <img bind:this={imageBinding} src={image} alt="Project Image"/>
+{#if isMobile}
+    <div class="image-mobile box-border mx-auto">
+        <img on:load={onLoad} bind:this={imageBinding} src={image} alt="Project Image"/>
     </div>
-</div>
+{:else}
+    <div class="grow basis-0 min-w-0 box-border overflow-hidden ">
+        <div class="p-8 flex flex-col h-full justify-center" class:items-end={invert}>
+            <img on:load={onLoad} bind:this={imageBinding} src={image} alt="Project Image"/>
+        </div>
+    </div>
+{/if}
