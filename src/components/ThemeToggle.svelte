@@ -141,5 +141,6 @@
             fill="transparent"
             cursor="pointer"
             on:click={() => toggleSwitch()}
+            data-umami-event="Theme Switch"
     />
 </svg>
