@@ -26,15 +26,15 @@
 
 <div class="flex justify-end space-x-2">
     <!-- LinkedIn  -->
-    <a href="https://www.linkedin.com/in/muellerda/" target="_blank">
+    <a href="https://www.linkedin.com/in/muellerda/" target="_blank" data-umami-event="LinkedIn Button">
         <img src={linkedin} alt="LinkedIn" class="w-8 h-8"/>
     </a>
     <!-- Github -->
-    <a href="https://github.com/DavidMueller1" target="_blank">
+    <a href="https://github.com/DavidMueller1" target="_blank" data-umami-event="GitHub Button">
         <img class:invert={realLight} src={github} alt="GitHub" class="w-8 h-8"/>
     </a>
     <!-- Mail -->
-    <a href="mailto:david.muelle2@web.de" target="_blank">
+    <a href="mailto:david.muelle2@web.de" target="_blank" data-umami-event="Mail Button">
         <Fa icon={faEnvelope} size="2.1x" class="h-8 {realLight ? 'text-white' : 'text-black'}"/>
     </a>
 </div>
