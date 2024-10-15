@@ -6,6 +6,7 @@
 
     import privacyHubImage from '$lib/assets/images/privacy_hub.png';
     import unityVrImage from '$lib/assets/images/unity_vr.jpg';
+    import infovis from '$lib/assets/images/infovis.png';
 
     export let isMobile: boolean;
     export let spacingMiddle = 80;
@@ -127,10 +128,26 @@
         <div class="mt-4">
             In this practical course, the focus was on developing a VR experience in Unity. In addition to that, we were tasked to integrate multiplayer and implement some controls via an EMG sensor, which measures muscle activity. The time frame for this project was one week.
             <br><br>
-<!--            Portal-->
             Our group of four students decided to create a VR puzzle game inspired by the popular game <a href="https://store.steampowered.com/app/400/Portal/" target="_blank">Portal</a>. Two players have to escape rooms by solving puzzles together. The catch is that the players move around by teleporting the other player, which makes communication and coordination key to success. The EMG sensor was used to control the teleportation.
             <br><br>
             During this project, I learned a lot about VR development, multiplayer synchronization, and how to integrate hardware into a Unity project.
+        </div>
+    </ProjectRow>
+    <!--  Unity VR  -->
+    <ProjectRow
+        projectTitle="Information Visualization"
+        projectSubtitle='Lecture Project'
+        content={infovis}
+        spacingMiddle={spacingMiddle}
+        verticalSpacing={verticalSpacing}
+        invert={false}
+        isMobile={isMobile}
+        onLoad={onLoad}
+    >
+        <div class="mt-4">
+            This lecture was about visualizing big data in an intuitive way. The goal of the final project was to create an interactive, single-page visualization of a huge dataset using <a href="https://d3js.org/" target="_blank">D3.js</a>. We were tasked to combine german patent application data including location and time from 1990 to 2014 with another dataset of our choice. Our group of three students decided to combine the patent data with the election results of german federal states.
+            <br><br>
+            You can find our result here: <a href="https://www.cip.ifi.lmu.de/~muellerdav/" target="_blank">Information Visualization</a>
         </div>
     </ProjectRow>
 </div>

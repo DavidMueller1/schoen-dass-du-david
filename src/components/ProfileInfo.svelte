@@ -28,7 +28,9 @@
         <div class="mt-4">
             I recently completed my Master's degree in Media Informatics, a multidisciplinary field combining computer science, design, and user interaction. My passion lies in developing innovative, user-friendly software and hardware prototypes. I have experience in web development (front- and backend), mobile development, developing desktop applications, hardware prototyping, and design.
             <br><br>
-            This website is a showcase of my recent <b>projects</b>. Feel free to explore and get in touch if you have any questions, feedback, or want to work with me:
+            In my recent jobs, I worked as a <b>Software Developer</b> with a focus on web and mobile development with various frameworks.
+            <br><br>
+            This website is a showcase of my recent <b>academic projects</b>. Feel free to explore and get in touch if you have any questions, feedback, or want to work with me:
         </div>
         <Socials />
     </div>
