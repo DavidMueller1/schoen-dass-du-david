@@ -11,3 +11,7 @@ a {
     color: #06b6d4;
     text-decoration: underline;
 }
+
+/*body * {*/
+/*    @apply transition duration-500;*/
+/*}*/

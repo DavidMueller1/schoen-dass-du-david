@@ -3,6 +3,7 @@
     import {afterUpdate, onMount} from "svelte";
     import ProfileInfo from "../components/ProfileInfo.svelte";
     import ProjectsComponent from "../components/ProjectsComponent.svelte";
+    import {isDark} from "../stores/themeStore";
 
     const timelineWidth = 8;
     const headerHeight = 64;
@@ -36,6 +37,15 @@
     // $: projectRowHeights && console.log(projectRowHeights);
 
     let currentProjectIndex = 0;
+
+    let currentIsDark = false;
+
+    isDark.subscribe((value) => {
+        currentIsDark = value;
+        // Check if DOM is loaded
+        if (!timeline) return;
+        createD3Elements();
+    });
 
     const checkMobile = () => {
         isMobile = window.innerWidth < 1024;
@@ -107,7 +117,7 @@
                     .transition()
                     .duration(1000)
                     .attr('r', (_, i) => i >= currentProjectIndex ? timelineWidth : timelineWidth * 2)
-                    .attr('fill', (_, i) => i < currentProjectIndex ? 'rgb(6 182 212)' : 'rgb(238 238 238)');
+                    .attr('fill', (_, i) => i < currentProjectIndex ? 'rgb(6 182 212)' : (currentIsDark ? '#3b3b3b' : '#eeeeee'));
             }
         }
     }
@@ -124,7 +134,7 @@
             .attr('y', profileInfoHeight)
             .attr('width', timelineWidth)
             .attr('height', timelineLength)
-            .attr('fill', '#eeeeee');
+            .attr('fill', currentIsDark ? '#3b3b3b' : '#eeeeee');
 
         timeline = viewBox
             .append('rect')
@@ -146,7 +156,7 @@
                 profileInfoHeight + projectRowHeights[i] / 2 + verticalSpacing + projectRowHeights.slice(0, i).reduce((acc, curr) => acc + curr + verticalSpacing, 0)
             )
             .attr('r', timelineWidth)
-            .attr('fill', 'rgb(238 238 238)');
+            .attr('fill', currentIsDark ? '#3b3b3b' : '#eeeeee');
     }
 
     const updateGraphics = () => {
@@ -167,11 +177,16 @@
 
         // Listen to scroll events
         window.addEventListener("scroll", recalculateScrollPosition);
+
+        // Listen to theme change by looking for the dark class on the body
+        const observer = new MutationObserver(() => {
+            console.log("Theme changed");
+        });
     });
 </script>
 
-<div bind:this={containerBinding} class="py-24 box-border">
-    <div class="w-full absolute -z-10">
+<div bind:this={containerBinding} class="box-border">
+    <div class="py-24 w-full absolute -z-10 dark:bg-[#121212]">
         <svg bind:this={viewBoxBinding} height={containerHeight} class="w-full">
 <!--        <svg bind:this={viewBoxBinding} class="w-full h-full">-->
 <!--			<g>-->
@@ -205,7 +220,7 @@
 <!--            </g>-->
         </svg>
     </div>
-    <div class="relative">
+    <div class="py-24 relative">
         <ProfileInfo bind:currentHeight={profileInfoHeight} />
         <ProjectsComponent
             isMobile={isMobile}

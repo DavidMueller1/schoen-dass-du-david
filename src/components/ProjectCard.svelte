@@ -17,7 +17,7 @@
 
 {#if isMobile}
 <!--    <div class="grow basis-0 w-full box-border bg-white shadow-even rounded-lg overflow-hidden">-->
-    <div class="box-border bg-white shadow-even rounded-lg">
+    <div class="box-border bg-white shadow-even rounded-lg dark:bg-[#1f1f1f]">
         <div class="p-8">
             <div class="text-xl font-bold">{projectTitle}</div>
             {#if projectSubtitle}
@@ -28,7 +28,7 @@
         </div>
     </div>
 {:else}
-    <div class="grow basis-0 min-w-0 box-border bg-white shadow-even rounded-lg overflow-hidden">
+    <div class="grow basis-0 min-w-0 box-border bg-white shadow-even rounded-lg overflow-hidden dark:bg-[#1f1f1f]">
         <div class="p-8">
             <div class="text-xl font-bold">{projectTitle}</div>
             {#if projectSubtitle}
