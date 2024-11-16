@@ -40,6 +40,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.6.0",
 		"@sveltejs/adapter-static": "^3.0.1",
 		"@types/d3": "^7.4.3",
+		"amplify-adapter": "^0.2.0",
 		"d3": "^7.9.0",
 		"d3-hsv": "^0.1.0",
 		"svelte-fa": "^4.0.3",
